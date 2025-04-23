@@ -42,7 +42,7 @@ def check_replication(primrole,stbrole,envfile):
 
 
     if gtid_master == gtid_replica:
-        print("\n\n\n=== MySQL Replication Setup is Successful ===")
+        print("\n\n\n=== GTID Between master and replica is the same ===")
     else:
         print(f"\n\n\n=== gtid between master and replica is not the same \n gtid master : {gtid_master} gtid replica : {gtid_replica}\n please check again")
     print("\n====== completed =======\n")
