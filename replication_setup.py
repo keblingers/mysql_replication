@@ -130,7 +130,7 @@ def check_replica(standby,envfile):
                         """
         dbconn = sqlalchemy_conn(standby,envfile)
         execute = pd.read_sql(check_rep,dbconn)
-        data = execute[["Source_Host","Source_Log_File","Read_Source_Log_Pos","Replica_IO_Running","Replica_SQL_Running","Replica_SQL_Running_State","Executed_Gtid_Set","Replica_IO_State"]]
+        data = execute[["Source_Host","Source_Log_File","Read_Source_Log_Pos","Replica_IO_Running","Replica_SQL_Running","Replica_SQL_Running_State","Executed_Gtid_Set"]]
         print(data)
         return data['Executed_Gtid_Set'].iloc[0]
 
@@ -193,16 +193,18 @@ def replication_setup(envfile,primrole,stbrole,cfile):
     print("\n====== completed ======")
 
     print("\n====== check master and replica =======\n")
-    print("\t=== master GTID ===")
+    print("=== master GTID ===")
     gtid_master = check_master(primrole,envfile)
     print("\n")
-    print("\t === replica GTID ===")
+    print("=== replica GTID ===")
     gtid_replica = check_replica(stbrole,envfile)
 
+
+
     if gtid_master == gtid_replica:
-        print("\n\t=== MySQL Replication Setup is Successful ===")
+        print("\n\n\n=== MySQL Replication Setup is Successful ===")
     else:
-        print(f"gtid between master and replica is not the same \n gtid master : {gtid_master} gtid replica : {gtid_replica}\n please check again")
+        print(f"\n\n\n=== gtid between master and replica is not the same \n gtid master : {gtid_master} gtid replica : {gtid_replica}\n please check again")
     print("\n====== completed =======\n")
 
 
