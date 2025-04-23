@@ -53,4 +53,4 @@ if __name__ == '__main__':
     parser.add_argument('-p','--primary-role',required=True,help="database primary role host for replication and backup")
     parser.add_argument('-s','--standby-role',required=True,help="database secondary role host for replication")
     args = vars(parser.parse_args())
-    check_replication(args['env_file'],args['primary_role'],args['standby_role'])
+    check_replication(args['primary_role'],args['standby_role'],args['env_file'])
